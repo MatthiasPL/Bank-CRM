@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bankudes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,13 +12,15 @@ namespace bankudes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            BazaDanych bd = new BazaDanych();
             if (string.IsNullOrEmpty(Session["login"] as string))
             {
                 Response.Redirect("default.aspx");
             }
             else
             {
-                powitanie.InnerHtml = "Witaj, " + Session["login"].ToString();
+                //bd.dodajWalute("cos", "COS", 12.00, 11.98);
+                powitanie.InnerHtml = "Witaj, " + bd.pobierzImie(Session["login"].ToString());
             }
         }
 
@@ -25,6 +28,16 @@ namespace bankudes
         {
             Session.Clear();
             Response.Redirect("default.aspx");
+        }
+
+        protected void bKonto_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("nowekonto.aspx");
+        }
+
+        protected void bWymiana_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("wymiana.aspx");
         }
     }
 }

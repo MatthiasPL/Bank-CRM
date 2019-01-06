@@ -10,7 +10,7 @@
 namespace bankudes {
     
     
-    public partial class index {
+    public partial class profil {
         
         /// <summary>
         /// form1 control.
@@ -22,48 +22,39 @@ namespace bankudes {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// errorBox control.
+        /// ostrzezenie control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ostrzezenie;
         
         /// <summary>
-        /// login control.
+        /// RadioButtonListKonta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox login;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListKonta;
         
         /// <summary>
-        /// haslo control.
+        /// RadioButtonListWaluty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox haslo;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListWaluty;
         
         /// <summary>
-        /// loginbutton control.
+        /// bDodaj control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginbutton;
-        
-        /// <summary>
-        /// HLregister control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HLregister;
+        protected global::System.Web.UI.WebControls.Button bDodaj;
     }
 }

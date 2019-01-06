@@ -28,8 +28,27 @@
           <div class="container">
             <asp:Button ID="logout" runat="server" Text="Wyloguj" CssClass="btn btn-primary pull-right" OnClick="logout_Click" />
             <h1 class="display-4" id="powitanie" runat="server"></h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <p class="lead">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/konto.aspx">Twój profil</asp:HyperLink></p>
           </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="row">
+                <div class="bs-component karta">
+                    <div class="alert alert-dismissible alert-info">
+                        <asp:Button ID="bKonto" runat="server" Text="Załóż konto!" CssClass="btn btn-info" OnClick="bKonto_Click" /> <br /> Zwiększ swoją noworoczną podwyżkę z nowym kontem oszczędnościowym.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="row">
+                <div class="bs-component karta">
+                    <div class="alert alert-dismissible alert-success">
+                        <asp:Button ID="bWymiana" runat="server" Text="Noworoczna wycieczka?" CssClass="btn btn-success" OnClick="bWymiana_Click" /> <br /> Skorzystaj z naszej wygodnej wymiany walut i zyskaj czas na przygotowania do wyjazdu.
+                    </div>
+                </div>
+            </div>
         </div>
         <!--
             TODO:
