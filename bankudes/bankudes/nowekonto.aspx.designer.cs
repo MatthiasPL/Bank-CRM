@@ -31,22 +31,22 @@ namespace bankudes {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ostrzezenie;
         
         /// <summary>
-        /// RadioButtonListKonta control.
+        /// ddKonta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListKonta;
+        protected global::System.Web.UI.WebControls.DropDownList ddKonta;
         
         /// <summary>
-        /// RadioButtonListWaluty control.
+        /// ddWaluty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListWaluty;
+        protected global::System.Web.UI.WebControls.DropDownList ddWaluty;
         
         /// <summary>
         /// bDodaj control.

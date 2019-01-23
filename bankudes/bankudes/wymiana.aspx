@@ -25,7 +25,29 @@
     <form id="form1" runat="server">
     <div class="container">
 
+        <div class="alert alert-danger" runat="server" id="ostrzezenie">
+
+        </div>
+        <asp:Label ID="LabelKonta" runat="server" Text="Przelej z:"></asp:Label>
+
 	</div>
+        <asp:DropDownList ID="ddKontaUz" runat="server" OnSelectedIndexChanged="ddKontaUz_SelectedIndexChanged">
+        </asp:DropDownList>
+        <p>
+            <asp:Label ID="LabelKontaUz2" runat="server" Text="Przelej na:"></asp:Label>
+        </p>
+        <asp:DropDownList ID="ddKontaUz2" runat="server" Height="64px" OnSelectedIndexChanged="ddKontaUz2_SelectedIndexChanged">
+        </asp:DropDownList>
+        <br />
+        <p>
+            <asp:Label ID="LabelPrzelew" runat="server" Text="Kwota przelewu:"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="TbKwota" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Button ID="bTransfer" runat="server" OnClick="bTransfer_Click" Text="Dokonaj transferu walut" />
+        </p>
     </form>
 </body>
 </html>

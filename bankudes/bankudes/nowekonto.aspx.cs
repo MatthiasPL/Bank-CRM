@@ -27,36 +27,59 @@ namespace bankudes
             {
 
             }
+            if (!IsPostBack)
+            {
+                ddKonta.DataSource = bd.zaladujCheckBoxy();
+                ddKonta.DataBind();
+                //ddKonta.Items.AddRange(bd.zaladujCheckBoxy());
+                ddWaluty.DataSource = bd.zaladujWaluty();
+                ddWaluty.DataBind();
+                //ddWaluty.Items.Add(bd.zaladujWaluty());
+            }
         }
+
+        string selectedWaluta = "1", selectedKonta = "1";
 
         protected void bDodaj_Click(object sender, EventArgs e)
         {
             //bDodaj.Text = RadioButtonListWaluty.SelectedIndex.ToString();
+                  
 
-            string selectedWaluta = "", selectedKonta = "";
+            
 
-            if (RadioButtonListWaluty.SelectedIndex > -1)
-            {
-                
-            }
-            else
-            {
-                ostrzezenie.InnerHtml += "<strong>Nie wybrano rodzaju konta</strong>";
-            }
-            if(RadioButtonListKonta.SelectedIndex > -1)
-            {
+            /* if (RadioButtonListWaluty.SelectedIndex > -1)
+             {
 
-            }
-            else
-            {
-                ostrzezenie.InnerHtml += "<strong>Nie wybrano waluty</strong>";
-            }
+             }
+             else
+             {
+                 ostrzezenie.InnerHtml += "<strong>Nie wybrano rodzaju konta</strong>";
+             }
+             if(RadioButtonListKonta.SelectedIndex > -1)
+             {
+
+             }
+             else
+             {
+                 ostrzezenie.InnerHtml += "<strong>Nie wybrano waluty</strong>";
+             }*/
             //if(RadioButtonListWaluty.SelectedIndex > -1 && RadioButtonListKonta.SelectedIndex > -1)
             //{
             BazaDanych bd = new BazaDanych();
-            bd.dodajKonto("1", "1", "1");
-                //bd.dodajKonto(bd.pobierzIdKlienta(Session["login"].ToString()), (RadioButtonListKonta.SelectedIndex+1).ToString(), (RadioButtonListWaluty.SelectedIndex + 1).ToString());
-            //}
+             //bd.dodajKonto("1", "1", "1");
+                 bd.dodajKonto(bd.pobierzIdKlienta(Session["login"].ToString()), selectedKonta, selectedWaluta);
+             //}
+        }
+
+
+        protected void ddWaluty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedWaluta= (ddWaluty.SelectedIndex+1).ToString();
+        }
+
+        protected void ddKonta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedKonta= (ddKonta.SelectedIndex+1).ToString();
         }
     }
 }

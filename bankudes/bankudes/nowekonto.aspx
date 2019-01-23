@@ -30,14 +30,16 @@
         <div class="col-lg-6 col-md-6">
         <fieldset class="form-group">
             <legend>Typ konta</legend>
-                    <asp:RadioButtonList ID="RadioButtonListKonta" runat="server"></asp:RadioButtonList>
+                    <asp:DropDownList ID="ddKonta" runat="server" OnSelectedIndexChanged="ddKonta_SelectedIndexChanged">
+            </asp:DropDownList>
         </fieldset>
         </div>
         <div class="col-lg-6 col-md-6">
             <div class="row">
                 <fieldset class="form-group">
                     <legend>Waluta</legend>
-                            <asp:RadioButtonList ID="RadioButtonListWaluty" runat="server"></asp:RadioButtonList>
+                            <asp:DropDownList ID="ddWaluty" runat="server" OnSelectedIndexChanged="ddWaluty_SelectedIndexChanged">
+                    </asp:DropDownList>
                 </fieldset>
             </div>
             <div class-"row">
