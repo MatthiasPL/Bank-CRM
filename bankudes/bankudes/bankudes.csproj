@@ -141,6 +141,7 @@
     <Content Include="Content\home.css" />
     <Content Include="home.aspx" />
     <Content Include="konto.aspx" />
+    <Content Include="kredyt.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -161,7 +162,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="wymiana.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -195,6 +195,13 @@
     <Compile Include="konto.aspx.designer.cs">
       <DependentUpon>konto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="kredyt.aspx.cs">
+      <DependentUpon>kredyt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="kredyt.aspx.designer.cs">
+      <DependentUpon>kredyt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\BazaDanych.cs" />
     <Compile Include="Models\Waluty.cs" />
     <Compile Include="nowekonto.aspx.cs">
@@ -211,13 +218,6 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="wymiana.aspx.cs">
-      <DependentUpon>wymiana.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="wymiana.aspx.designer.cs">
-      <DependentUpon>wymiana.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

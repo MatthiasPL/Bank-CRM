@@ -10,7 +10,7 @@
 namespace bankudes {
     
     
-    public partial class wymiana {
+    public partial class kredyt {
         
         /// <summary>
         /// form1 control.
@@ -22,75 +22,75 @@ namespace bankudes {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ostrzezenie control.
+        /// ddKredyty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ostrzezenie;
+        protected global::System.Web.UI.WebControls.DropDownList ddKredyty;
         
         /// <summary>
-        /// LabelKonta control.
+        /// bKredytOn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelKonta;
+        protected global::System.Web.UI.WebControls.Button bKredytOn;
         
         /// <summary>
-        /// ddKontaUz control.
+        /// bZatwierdz control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddKontaUz;
+        protected global::System.Web.UI.WebControls.Button bZatwierdz;
         
         /// <summary>
-        /// LabelKontaUz2 control.
+        /// bUsun control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelKontaUz2;
+        protected global::System.Web.UI.WebControls.Button bUsun;
         
         /// <summary>
-        /// ddKontaUz2 control.
+        /// NowyKredyt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddKontaUz2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NowyKredyt;
         
         /// <summary>
-        /// LabelPrzelew control.
+        /// ddKonta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPrzelew;
+        protected global::System.Web.UI.WebControls.DropDownList ddKonta;
         
         /// <summary>
-        /// TbKwota control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbKwota;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// bTransfer control.
+        /// bPozycz control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bTransfer;
+        protected global::System.Web.UI.WebControls.Button bPozycz;
     }
 }

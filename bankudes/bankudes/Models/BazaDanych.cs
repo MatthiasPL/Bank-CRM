@@ -83,7 +83,7 @@ namespace bankudes.Models
             //m_dbConnection.Close();
             return false;
         }*/
-    
+
         public void dodajWalute(string nazwa_waluty, string skrot, double kupno, double sprzedaz)
         {
             try
@@ -109,7 +109,7 @@ namespace bankudes.Models
                         }*/
                         con.Close();
                     }
-               
+
                 }
             }
             catch (Exception ex)
@@ -117,7 +117,7 @@ namespace bankudes.Models
                 Console.WriteLine(ex.ToString());
                 //m_dbConnection.Close();
             }
-    }
+        }
 
 
         /*  try
@@ -507,20 +507,20 @@ namespace bankudes.Models
                     // String query = "SELECT nazwa_konta, opis from Typy_kont";
                     MySqlCommand cmd = con.CreateCommand();
                     cmd.CommandText = "SELECT konta.saldo, waluty.skrot FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN waluty ON konta.waluta_id = waluty.waluta_id WHERE login = @login";
-                   // cmd.Connection = con;
-                        //con.Open();
-                        cmd.Parameters.Add("login", login);
-                        cmd.ExecuteNonQuery();
-                        using (MySqlDataReader result = cmd.ExecuteReader())
+                    // cmd.Connection = con;
+                    //con.Open();
+                    cmd.Parameters.Add("login", login);
+                    cmd.ExecuteNonQuery();
+                    using (MySqlDataReader result = cmd.ExecuteReader())
+                    {
+                        List<string> str = new List<string>();
+                        while (result.Read())
                         {
-                            List<string> str = new List<string>();
-                            while (result.Read())
-                            {
-                                str.Add(" Saldo: " + result.GetDouble(0) + " " + result.GetString(1));
-                            }
-                            con.Close();
-                            return str;
+                            str.Add(" Saldo: " + result.GetDouble(0) + " " + result.GetString(1));
                         }
+                        con.Close();
+                        return str;
+                    }
                     //}
 
                 }
@@ -686,23 +686,23 @@ namespace bankudes.Models
                 using (MySqlConnection con = new MySqlConnection(m_dbConnection))
                 {
                     con.Open();
-                   // String query = "SELECT nazwa_konta, opis from Typy_kont";
+                    // String query = "SELECT nazwa_konta, opis from Typy_kont";
                     MySqlCommand cmd = con.CreateCommand();
                     cmd.CommandText = "SELECT nazwa_konta, opis from Typy_kont";
                     //using (MySqlCommand cmd = new MySqlCommand(query))
-                   // {
-                        using (MySqlDataReader result = cmd.ExecuteReader())
+                    // {
+                    using (MySqlDataReader result = cmd.ExecuteReader())
+                    {
+                        List<string> str = new List<string>();
+                        int id = 0;
+                        while (result.Read())
                         {
-                            List<string> str = new List<string>();
-                            int id = 0;
-                            while (result.Read())
-                            {
-                                str.Add(result.GetString(0) + " - " + result.GetString(1));// + "\r\n";
-                                id++;
-                            }
-                            con.Close();
-                            return str;
+                            str.Add(result.GetString(0) + " - " + result.GetString(1));// + "\r\n";
+                            id++;
                         }
+                        con.Close();
+                        return str;
+                    }
                     //}
 
                 }
@@ -752,19 +752,19 @@ namespace bankudes.Models
                     cmd.CommandText = "SELECT skrot, nazwa_waluty from Waluty";
                     //using (MySqlCommand cmd = new MySqlCommand(query))
                     //{
-                        using (MySqlDataReader result = cmd.ExecuteReader())
+                    using (MySqlDataReader result = cmd.ExecuteReader())
+                    {
+                        List<string> str = new List<string>();
+                        int id = 0;
+                        while (result.Read())
                         {
-                            List<string> str = new List<string>();
-                            int id = 0;
-                            while (result.Read())
-                            {
                             str.Add(result.GetString(0) + " - " + result.GetString(1));// + "\r\n";
-                                id++;
-                            }
-                            con.Close();
-                            return str;
+                            id++;
+                        }
+                        con.Close();
+                        return str;
                     }
-                   //}
+                    //}
 
                 }
             }
@@ -919,17 +919,17 @@ namespace bankudes.Models
             }
         }
 
-        public bool Przelew(double kwota,double saldo,string id)
+        public bool Przelew(double kwota, double saldo, string id)
         {
             try
             {
                 using (MySqlConnection con = new MySqlConnection(m_dbConnection))
-                {                  
-                    con.Open();                    
+                {
+                    con.Open();
                     MySqlCommand cmd = con.CreateCommand();
-                    cmd.CommandText = "UPDATE Konta SET saldo = @saldo WHERE konto_id = @id; ";          
-                              
-                    cmd.Parameters.Add("saldo", saldo+kwota);
+                    cmd.CommandText = "UPDATE Konta SET saldo = @saldo WHERE konto_id = @id; ";
+
+                    cmd.Parameters.Add("saldo", saldo + kwota);
                     cmd.Parameters.Add("id", id);
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -969,29 +969,106 @@ namespace bankudes.Models
 
 
 
-            /*SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=C:\\Users\\Ja\\Downloads\\bank.db;Version=3;");
-            using (SQLiteConnection con = new SQLiteConnection(m_dbConnection))
+        /*SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=C:\\Users\\Ja\\Downloads\\bank.db;Version=3;");
+        using (SQLiteConnection con = new SQLiteConnection(m_dbConnection))
+        {
+            con.Open();
+
+            using (SQLiteTransaction tr = con.BeginTransaction())
             {
-                con.Open();
-
-                using (SQLiteTransaction tr = con.BeginTransaction())
+                using (SQLiteCommand cmd = con.CreateCommand())
                 {
-                    using (SQLiteCommand cmd = con.CreateCommand())
-                    {
 
-                        cmd.Transaction = tr;
-                        cmd.CommandText = "INSERT INTO Konta(konto_id, klient_id, typ_konta_id, saldo, waluta_id) VALUES(null, @klient_id, @typ_konta_id, 0, @waluta_id)";
-                        cmd.Parameters.AddWithValue("klient_id", klient_id);
-                        cmd.Parameters.AddWithValue("typ_konta_id", typ_konta_id);
-                        cmd.Parameters.AddWithValue("waluta_id", waluta_id);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    tr.Commit();
+                    cmd.Transaction = tr;
+                    cmd.CommandText = "INSERT INTO Konta(konto_id, klient_id, typ_konta_id, saldo, waluta_id) VALUES(null, @klient_id, @typ_konta_id, 0, @waluta_id)";
+                    cmd.Parameters.AddWithValue("klient_id", klient_id);
+                    cmd.Parameters.AddWithValue("typ_konta_id", typ_konta_id);
+                    cmd.Parameters.AddWithValue("waluta_id", waluta_id);
+                    cmd.ExecuteNonQuery();
                 }
 
-                con.Close();
+                tr.Commit();
             }
-            return true;*/
-    }
+
+            con.Close();;
+        }
+        return true;*/
+
+
+        public bool PobierzUprawnienia(string login)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+                {
+                    String query = "SELECT jest_administratorem FROM Klienci WHERE login = @login";
+                    using (MySqlCommand cmd = new MySqlCommand(query))
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        cmd.Parameters.Add("login", login);
+                        cmd.ExecuteNonQuery();
+                        using (MySqlDataReader result = cmd.ExecuteReader())
+                        {
+                            bool str = false;
+                            while (result.Read())
+                            {
+                                str = result.GetBoolean(0);
+                            }
+                            con.Close();
+                            return str;
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //m_dbConnection.Close();
+                return false;
+            }
+        }
+
+        public List<string> pobierzKredytUz(string login)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+                {
+                    //String query = "SELECT konta.saldo, waluty.skrot FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN waluty ON konta.waluta_id = waluty.waluta_id WHERE login = @login";
+                    //using (MySqlCommand cmd = new MySqlCommand(query))
+                    //{
+                    con.Open();
+                    // String query = "SELECT nazwa_konta, opis from Typy_kont";
+                    MySqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT kredyty.zatwierdzony, kredyty.kwota FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN kredyty ON konta.konto_id = kredyty.konto_id WHERE login = @login";
+                    // cmd.Connection = con;
+                    //con.Open();
+                    cmd.Parameters.Add("login", login);
+                    cmd.ExecuteNonQuery();
+                    using (MySqlDataReader result = cmd.ExecuteReader())
+                    {
+                        List<string> str = new List<string>();
+                        while (result.Read())
+                        {
+                            if(result.GetBoolean(0)==true)
+                            str.Add(" Zatwierdzony, " + result.GetDouble(1).ToString());
+                        }
+                        con.Close();
+                        return str;
+                    }
+                    //}
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //m_dbConnection.Close();
+                return new List<string>(new string[] { "null" });
+            }
+
+
+        }
 }

@@ -37,7 +37,7 @@ namespace bankudes
 
         protected void bWymiana_Click(object sender, EventArgs e)
         {
-            Response.Redirect("wymiana.aspx");
+            Response.Redirect("kredyt.aspx");
         }
     }
 }
