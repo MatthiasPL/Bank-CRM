@@ -18,9 +18,24 @@ namespace bankudes
             {
                 bZatwierdz.Visible = false;
                 bUsun.Visible = false;
-                bd.pobierzKredytUz(Session["login"].ToString());
-            }
                 
+                if (!IsPostBack)
+                {
+                    ddKredyty.DataSource = bd.pobierzKredytUz(Session["login"].ToString());
+                    ddKredyty.DataBind();
+                }
+            }
+            if(bd.PobierzUprawnienia(Session["login"].ToString()) == true)
+            {
+                if (!IsPostBack)
+                {
+                    List<string> dane;
+                    List<string> loginy = bd.pobierzWszystkieLoginy();
+                    List<string> kredyty = bd.pobierzKredyty();
+                    //ddKredyty.DataBind();
+                }
+            }
+
         }
 
         protected void bKredytOn_Click(object sender, EventArgs e)

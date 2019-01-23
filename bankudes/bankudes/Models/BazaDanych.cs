@@ -1052,8 +1052,8 @@ namespace bankudes.Models
                         List<string> str = new List<string>();
                         while (result.Read())
                         {
-                            if(result.GetBoolean(0)==true)
-                            str.Add(" Zatwierdzony, " + result.GetDouble(1).ToString());
+                            if (result.GetBoolean(0) == true)
+                                str.Add(" Zatwierdzony, " + result.GetDouble(1).ToString());
                         }
                         con.Close();
                         return str;
@@ -1068,7 +1068,87 @@ namespace bankudes.Models
                 //m_dbConnection.Close();
                 return new List<string>(new string[] { "null" });
             }
-
-
         }
+
+        public List<string> pobierzKredyty()
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+                {
+                    //String query = "SELECT konta.saldo, waluty.skrot FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN waluty ON konta.waluta_id = waluty.waluta_id WHERE login = @login";
+                    //using (MySqlCommand cmd = new MySqlCommand(query))
+                    //{
+                    con.Open();
+                    // String query = "SELECT nazwa_konta, opis from Typy_kont";
+                    MySqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT kredyty.zatwierdzony, kredyty.kwota FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN kredyty ON konta.konto_id = kredyty.konto_id WHERE login=@login";
+                    // cmd.Connection = con;
+                    //con.Open();                   
+                    cmd.ExecuteNonQuery();
+                    using (MySqlDataReader result = cmd.ExecuteReader())
+                    {
+                        List<string> str = new List<string>();
+                        while (result.Read())
+                        {
+                            if (result.GetBoolean(0) == true)
+                                str.Add(" Zatwierdzony, " + result.GetDouble(1).ToString());
+                        }
+                        con.Close();
+                        return str;
+                    }
+                    //}
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //m_dbConnection.Close();
+                return new List<string>(new string[] { "null" });
+            }
+        }
+
+        public List<string> pobierzWszystkieLoginy()
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+                {
+                    //String query = "SELECT konta.saldo, waluty.skrot FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN waluty ON konta.waluta_id = waluty.waluta_id WHERE login = @login";
+                    //using (MySqlCommand cmd = new MySqlCommand(query))
+                    //{
+                    con.Open();
+                    // String query = "SELECT nazwa_konta, opis from Typy_kont";
+                    MySqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT login FROM klienci";
+                    // cmd.Connection = con;
+                    //con.Open();                   
+                    cmd.ExecuteNonQuery();
+                    using (MySqlDataReader result = cmd.ExecuteReader())
+                    {
+                        List<string> str = new List<string>();
+                        while (result.Read())
+                        {
+                            str.Add(result.GetString(0));
+                        }
+                        con.Close();
+                        return str;
+                    }
+                    //}
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //m_dbConnection.Close();
+                return new List<string>(new string[] { "null" });
+            }
+        }
+
+
+
+
+    }
 }
