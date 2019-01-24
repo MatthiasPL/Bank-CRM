@@ -45,8 +45,7 @@
             <div class="row">
                 <div class="bs-component karta">
                     <div class="alert alert-dismissible alert-success">
-                        <asp:Button ID="bWymiana" runat="server" Text="Noworoczna wycieczka?" CssClass="btn btn-success" OnClick="bWymiana_Click" /> <br /> Skorzystaj z naszej wygodnej wymiany walut i zyskaj czas na przygotowania do wyjazdu.
-                    </div>
+                        <asp:Button ID="bWymiana" runat="server" Text="Noworoczna wycieczka?" CssClass="btn btn-success" OnClick="bWymiana_Click" /> <br /> Skorzystaj z wygodnego kredytu i przeżyj wyprawę życia!</div>
                 </div>
             </div>
         </div>

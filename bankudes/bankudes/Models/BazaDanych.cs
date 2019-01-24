@@ -1053,7 +1053,9 @@ namespace bankudes.Models
                         while (result.Read())
                         {
                             if (result.GetBoolean(0) == true)
-                                str.Add(" Zatwierdzony, " + result.GetDouble(1).ToString());
+                                str.Add("Zatwierdzony, " + result.GetDouble(1).ToString());
+                            if (result.GetBoolean(0) == false)
+                                str.Add("Niezatwierdzony, " + result.GetDouble(1).ToString());
                         }
                         con.Close();
                         return str;
@@ -1082,7 +1084,7 @@ namespace bankudes.Models
                     con.Open();
                     // String query = "SELECT nazwa_konta, opis from Typy_kont";
                     MySqlCommand cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT kredyty.zatwierdzony, kredyty.kwota FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN kredyty ON konta.konto_id = kredyty.konto_id WHERE login=@login";
+                    cmd.CommandText = "SELECT kredyty.kredyt_id, kredyty.konto_id, kredyty.zatwierdzony, kredyty.kwota FROM klienci INNER JOIN konta ON klienci.klient_id = konta.klient_id INNER JOIN kredyty ON konta.konto_id = kredyty.konto_id";
                     // cmd.Connection = con;
                     //con.Open();                   
                     cmd.ExecuteNonQuery();
@@ -1091,8 +1093,10 @@ namespace bankudes.Models
                         List<string> str = new List<string>();
                         while (result.Read())
                         {
-                            if (result.GetBoolean(0) == true)
-                                str.Add(" Zatwierdzony, " + result.GetDouble(1).ToString());
+                            if (result.GetBoolean(2) == true)
+                                str.Add(result.GetInt64(0) + ", " + result.GetInt64(1) + ", Zatwierdzony, " + result.GetDouble(3).ToString());
+                            if(result.GetBoolean(2)==false)
+                                str.Add(result.GetInt64(0) + ", " + result.GetInt64(1) + ", Niezatwierdzony, " + result.GetDouble(3).ToString());
                         }
                         con.Close();
                         return str;
@@ -1147,7 +1151,76 @@ namespace bankudes.Models
             }
         }
 
+        public bool dodajKredyt(string konto_id, double kwota)
+        {
+            using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+            {
+                con.Open();
+                using (MySqlTransaction tr = con.BeginTransaction())
+                {
+                    using (MySqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.Transaction = tr;
+                        cmd.CommandText = "INSERT INTO kredyty(kredyt_id, konto_id, kwota, zatwierdzony) VALUES(null, @konto_id, @kwota, 0)";
+                        cmd.Parameters.Add("konto_id", konto_id);
+                        cmd.Parameters.Add("kwota", kwota);                        
+                        cmd.ExecuteNonQuery();
+                    }
+                    tr.Commit();
+                }
+                con.Close();
+            }
+            return true;
+        }
 
+        public bool ZatwierdzKredyt(string konto_id)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+                {
+                    con.Open();
+                    MySqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "UPDATE Kredyty SET zatwierdzony = 1 WHERE konto_id = @konto_id; ";
+                    //cmd.CommandText = "UPDATE Konta SET saldo = @saldo WHERE konto_id = @id; ";
+
+                    cmd.Parameters.Add("konto_id", konto_id);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //m_dbConnection.Close();
+                return false;
+            }
+        }
+
+        public bool UsunKredyt(string kredyt_id)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(m_dbConnection))
+                {
+                    con.Open();
+                    MySqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "DELETE FROM kredyty WHERE kredyt_id = @kredyt_id; ";
+                    //ZŁE QUERY
+                    cmd.Parameters.Add("kredyt_id", kredyt_id);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //m_dbConnection.Close();
+                return false;
+            }
+        }
 
 
     }
