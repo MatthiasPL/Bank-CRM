@@ -17,7 +17,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/litera.css" />
+        <link rel="stylesheet" href="Content/litera.css" />
         <link rel="stylesheet" href="Content/home.css" />
     </environment>
 </head>
