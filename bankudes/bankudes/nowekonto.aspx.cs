@@ -43,9 +43,9 @@ namespace bankudes
         protected void bDodaj_Click(object sender, EventArgs e)
         {
             //bDodaj.Text = RadioButtonListWaluty.SelectedIndex.ToString();
-                  
 
-            
+
+
 
             /* if (RadioButtonListWaluty.SelectedIndex > -1)
              {
@@ -66,20 +66,26 @@ namespace bankudes
             //if(RadioButtonListWaluty.SelectedIndex > -1 && RadioButtonListKonta.SelectedIndex > -1)
             //{
             BazaDanych bd = new BazaDanych();
-             //bd.dodajKonto("1", "1", "1");
-                 bd.dodajKonto(bd.pobierzIdKlienta(Session["login"].ToString()), selectedKonta, selectedWaluta);
-             //}
+            //bd.dodajKonto("1", "1", "1");
+            bd.dodajKonto(bd.pobierzIdKlienta(Session["login"].ToString()), selectedKonta, selectedWaluta);
+            //}
         }
 
 
         protected void ddWaluty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedWaluta= (ddWaluty.SelectedIndex+1).ToString();
+            selectedWaluta = (ddWaluty.SelectedIndex + 1).ToString();
+        }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("default.aspx");
         }
 
         protected void ddKonta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedKonta= (ddKonta.SelectedIndex+1).ToString();
+            selectedKonta = (ddKonta.SelectedIndex + 1).ToString();
         }
     }
 }

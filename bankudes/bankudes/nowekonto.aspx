@@ -24,6 +24,16 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <asp:Button ID="logout" runat="server" Text="Wyloguj" CssClass="btn btn-primary pull-right" OnClick="logout_Click" />
+            <h1 class="display-4" id="powitanie" runat="server"></h1>
+            <p class="lead">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/konto.aspx">Twój profil</asp:HyperLink></p>
+                          <p class="lead">
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/home.aspx">Strona główna</asp:HyperLink></p>
+          </div>
+        </div>
         <div class="alert alert-danger" runat="server" id="ostrzezenie">
 
         </div>
