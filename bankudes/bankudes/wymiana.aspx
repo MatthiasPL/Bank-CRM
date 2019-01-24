@@ -25,29 +25,45 @@
     <form id="form1" runat="server">
     <div class="container">
 
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <asp:Button ID="logout" runat="server" Text="Wyloguj" CssClass="btn btn-primary pull-right" OnClick="logout_Click" />
+            <h1 class="display-4" id="powitanie" runat="server"></h1>
+            <p class="lead">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/konto.aspx">Twój profil</asp:HyperLink></p>
+                          <p class="lead">
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/home.aspx">Strona główna</asp:HyperLink></p>
+          </div>
+        </div>
+
         <div class="alert alert-danger" runat="server" id="ostrzezenie">
 
         </div>
-        <asp:Label ID="LabelKonta" runat="server" Text="Przelej z:"></asp:Label>
 
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+                <asp:Label ID="LabelKonta" runat="server" Text="Przelej z:"></asp:Label>
+                <asp:DropDownList ID="ddKontaUz" runat="server" OnSelectedIndexChanged="ddKontaUz_SelectedIndexChanged">
+                </asp:DropDownList>
+            </div>
+            <div class="row">
+                <asp:Label ID="LabelKontaUz2" runat="server" Text="Przelej na:"></asp:Label>
+                <asp:DropDownList ID="ddKontaUz2" runat="server" OnSelectedIndexChanged="ddKontaUz2_SelectedIndexChanged">
+                </asp:DropDownList>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+                <asp:Label ID="LabelPrzelew" runat="server" Text="Kwota przelewu:"></asp:Label>
+                <asp:TextBox ID="TbKwota" runat="server"></asp:TextBox>
+            </div>
+            <div class="row">
+                <asp:Button ID="Button1" runat="server" OnClick="bTransfer_Click" Text="Dokonaj przelewu" CssClass="btn btn-info" />
+            </div>
+        </div>
+      
 	</div>
-        <asp:DropDownList ID="ddKontaUz" runat="server" OnSelectedIndexChanged="ddKontaUz_SelectedIndexChanged">
-        </asp:DropDownList>
-        <p>
-            <asp:Label ID="LabelKontaUz2" runat="server" Text="Przelej na:"></asp:Label>
-        </p>
-        <asp:DropDownList ID="ddKontaUz2" runat="server" Height="64px" OnSelectedIndexChanged="ddKontaUz2_SelectedIndexChanged">
-        </asp:DropDownList>
-        <br />
-        <p>
-            <asp:Label ID="LabelPrzelew" runat="server" Text="Kwota przelewu:"></asp:Label>
-        </p>
-        <p>
-            <asp:TextBox ID="TbKwota" runat="server"></asp:TextBox>
-        </p>
-        <p>
-            <asp:Button ID="bTransfer" runat="server" OnClick="bTransfer_Click" Text="Dokonaj transferu walut" />
-        </p>
     </form>
 </body>
 </html>
