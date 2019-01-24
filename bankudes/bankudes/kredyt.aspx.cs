@@ -117,5 +117,11 @@ namespace bankudes
 
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("default.aspx");
+        }
     }
 }

@@ -22,5 +22,11 @@ namespace bankudes
                 daneOsobowe.InnerHtml = bd.pobierzDaneOsobowe(Session["login"].ToString());
             }
         }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("default.aspx");
+        }
     }
 }
